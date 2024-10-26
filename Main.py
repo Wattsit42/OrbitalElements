@@ -1,7 +1,6 @@
 from multiprocessing.forkserver import set_forkserver_preload
 
 import numpy as np
-import random
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 
@@ -55,4 +54,7 @@ for t in range(0,1000):
         planet.set_pos(t)
 
     ax.scatter(positions[0],positions[1],positions[2],)
+    ax.set_xlim([-35,35])
+    ax.set_ylim([-35,35])
+    ax.set_zlim([-1.2,1.2])
     fig.show()
