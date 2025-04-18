@@ -1,11 +1,5 @@
-from multiprocessing.forkserver import set_forkserver_preload
-
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits import mplot3d
-
-#Structure of planetary_data
-#[a,mew0,e,I,omega_bar,OMEGA,period,m/M]
 
 def rad_convert(angle):
     return (np.pi/180)*angle
@@ -31,7 +25,7 @@ class Planet:
 
 planetary_dataset = [[0.3871,252.25,0.20564,7.006,77.46,48.34,0.241,1.659*(10**-7)],[0.7233,181.98,0.00676,3.398,131.77,76.67,0.615,2.447*(10**-6)],[1,100.47,0.01673,0,102.93,0,1,3.039*(10**-6)],[1.5237,355.43,0.09337,1.852,336.08,49.71,1.881,3.226*(10**-7)],[5.2025,34.33,0.04854,1.299,14.27,100.29,11.87,9.542*(10**-4)],[9.5415,50.08,0.05551,2.494,92.86,113.64,29.47,2.857*(10**-4)],[19.188,314.20,0.04686,0.773,172.43,73.96,84.05,4.353*(10**-5)],[30.070,304.22,0.00895,1.770,46.68,131.79,164.9,5.165*(10**-5)]]
 #[0.3871,252.25,0.20564,7.006,77.46,48.34,0.241,1.659*(10**-7)],[0.7233,181.98,0.00676,3.398,131.77,76.67,0.615,2.447*(10**-6)],[1,100.47,0.01673,0,102.93,0,1,3.039*(10**-6)],[1.5237,355.43,0.09337,1.852,336.08,49.71,1.881,3.226*(10**-7)],[5.2025,34.33,0.04854,1.299,14.27,100.29,11.87,9.542*(10**-4)],[9.5415,50.08,0.05551,2.494,92.86,113.64,29.47,2.857*(10**-4)],[19.188,314.20,0.04686,0.773,172.43,73.96,84.05,4.353*(10**-5)],[30.070,304.22,0.00895,1.770,46.68,131.79,164.9,5.165*(10**-5)]
-#version
+# List for reference incase I want to remove any.
 Planets = []
 
 for i in range(len(planetary_dataset)):
@@ -42,7 +36,7 @@ fig = plt.figure()
 ax = plt.axes(projection='3d')
 time = np.linspace(0,164,100)
 for t in time:
-    #ax.clear()
+    #ax.clear() #Include if we just want the current positions
     positions = [[],[],[]]
 
     for planet in Planets:
@@ -52,7 +46,14 @@ for t in time:
         planet.set_pos(t)
 
     ax.scatter(positions[0],positions[1],positions[2],)
-    ax.set_xlim([-35,35])
-    ax.set_ylim([-35,35])
-    ax.set_zlim([-35,35])
-    fig.show()
+    # ax.set_xlim([-35,35]) # Used to produce the 1:1:1 scaling
+    # ax.set_ylim([-35,35])
+    # ax.set_zlim([-35,35])
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    ax.set_zlabel('z')
+
+fig.show()
+
+
+
